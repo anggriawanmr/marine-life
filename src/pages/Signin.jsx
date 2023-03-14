@@ -1,12 +1,33 @@
 import React from 'react';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 const Signin = () => {
+  const clientId =
+    '888991993406-1g4cs1pqs2a7ovb2d05ebtpjhagmis1f.apps.googleusercontent.com';
+
+  const handleLogin = async (credentialResponse) => {
+    var obj = jwt_decode(credentialResponse.credential);
+    var data = JSON.stringify(obj);
+    console.log(data);
+
+    const config = {
+      method: 'POST',
+      url: 'your backend server or endpoint',
+      headers: {},
+      data: data,
+    };
+
+    await axios(config);
+  };
+
   return (
     <div className="flex justify-center items-center min-w-full h-[87vh] bg-slate-50">
       <div className="flex items-center rounded-2xl shadow-lg w-[60%] h-[80%] bg-[#fff]">
         <div className="flex-1 flex flex-column items-center justify-center flex-col">
-          <div>Google</div>
-          <div>Facebook</div>
+          <GoogleOAuthProvider clientId={clientId}>
+            <GoogleLogin onSuccess={handleLogin} />
+          </GoogleOAuthProvider>
+          ;<div>Facebook</div>
           <div>Github</div>
         </div>
         <div className="h-[100%] flex items-center justify-center">
