@@ -11,8 +11,7 @@ const GoogleButton = () => {
   useEffect(() => {
     /* Global Google */
     google.accounts.id.initialize({
-      client_id:
-        '888991993406-1g4cs1pqs2a7ovb2d05ebtpjhagmis1f.apps.googleusercontent.com',
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: CredentialResponse,
     });
 
@@ -30,7 +29,7 @@ const Signin = () => {
   return (
     <div className="flex justify-center items-center min-w-full h-[87vh] bg-slate-50">
       <div className="flex items-center rounded-2xl shadow-lg w-[60%] h-[80%] bg-[#fff]">
-        <div className="flex-1 flex flex-column items-center justify-center flex-col">
+        <div className="flex-1 flex flex-column items-center justify-center flex-col gap-10">
           <GoogleButton />
           <div>Facebook</div>
           <div>Github</div>
